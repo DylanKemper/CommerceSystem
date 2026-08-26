@@ -31,7 +31,7 @@ namespace Stockify.Services
             return _products.ToList();
         }
 
-        public Product? GetProductById(int id)
+        public Product? GetById(int id)
         {
             return _products.FirstOrDefault(p => p.Id == id);
             //Product? sampleproduct = _products.FirstOrDefault(p => p.Id == id);
@@ -55,7 +55,7 @@ namespace Stockify.Services
 
         public bool DeleteProduct(int id)
         {
-            var existing = GetProductById(id);
+            var existing = GetById(id);
             if (existing is null) return false;
 
             _products.Remove(existing);

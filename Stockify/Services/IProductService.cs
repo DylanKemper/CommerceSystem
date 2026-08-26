@@ -6,7 +6,7 @@ namespace Stockify.Services
     {
         Product Add(Product product);
         IEnumerable<Product> GetAllProducts();
-        Product? GetProductById(int id);
+        Product? GetById(int id);
         bool UpdateProduct(Product product);
         bool DeleteProduct(int id);
     }
