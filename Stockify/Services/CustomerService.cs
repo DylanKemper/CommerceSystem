@@ -30,6 +30,8 @@ namespace Stockify.Services
 
         public bool Delete(int id)
         {
+            // If customer has orders linked to them, we should not delete the customer.
+            // For now, we will just check if the customer exists.
             var existing = GetById(id);
             if (existing == null)
             {
