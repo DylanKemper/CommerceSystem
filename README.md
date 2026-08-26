@@ -163,4 +163,4 @@ Then navigate to:
 
 ## License
 
-*(Add your preferred license here, e.g. MIT.)*
+*MIT*
