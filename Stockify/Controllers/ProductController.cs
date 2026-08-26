@@ -28,7 +28,7 @@ namespace Stockify.Controllers
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
-            var product = _productService.GetProductById(id);
+            var product = _productService.GetById(id);
             if (product == null)
             {
                 return NotFound();

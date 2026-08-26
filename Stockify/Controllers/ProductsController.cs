@@ -24,7 +24,7 @@ namespace Stockify.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var product = _productService.GetProductById(id);
+            var product = _productService.GetById(id);
             if (product is null) return NotFound();
             return View(product);
         }
@@ -47,7 +47,7 @@ namespace Stockify.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var product = _productService.GetProductById(id);
+            var product = _productService.GetById(id);
             if (product is null) return NotFound();
 
             _productService.DeleteProduct(id);

@@ -7,10 +7,12 @@ namespace Stockify.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;
+        private readonly IOrderService _orderService;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService, IOrderService orderService)
         {
             _customerService = customerService;
+            _orderService = orderService;
         }
 
         public IActionResult Index()
@@ -58,6 +60,12 @@ namespace Stockify.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
+            if (_orderService.GetByCustomerId(id).Any())
+            {
+                ModelState.AddModelError(string.Empty, "Cannot delete a customer with existing orders.");
+                return RedirectToAction(nameof(Index)); // or return a view with the error
+            }
+
             _customerService.Delete(id);
             return RedirectToAction(nameof(Index));
         }
