@@ -8,6 +8,7 @@ namespace Stockify
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddSingleton<IProductService, ProductService>();
+            builder.Services.AddSingleton<ICustomerService, CustomerService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
