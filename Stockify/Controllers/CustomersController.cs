@@ -29,5 +29,20 @@ namespace Stockify.Controllers
             }
             return Ok(customer);
         }
+
+        [HttpPost]
+        public ActionResult<Customer> Create(Customer customer) =>
+        CreatedAtAction(nameof(GetCustomer), new { id = customer.Id }, _customerService.Add(customer));
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Customer customer)
+        {
+            if (id != customer.Id) return BadRequest();
+            return _customerService.Update(customer) ? NoContent() : NotFound();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id) =>
+            _customerService.Delete(id) ? NoContent() : NotFound();
     }
 }
