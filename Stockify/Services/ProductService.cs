@@ -8,7 +8,7 @@ namespace Stockify.Services
 
         public ProductService()
         {
-           _products.Add(new Product { Id = 1, Name = "Dylan", Description = "Groot Piel", Price = 0.01m, Quantity = 1 });
+           _products.Add(new Product { Id = 1, Name = "Asus 17\" Laptop", Description = "High-performance laptop with latest specifications", Price = 24000m, Quantity = 1 });
 
         }
         
