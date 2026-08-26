@@ -7,8 +7,11 @@ namespace Stockify.Services
         private readonly List<Customer> _customers = new();     // In-memory list to store customers
         private int _nextId = 1;    // To generate unique IDs for new customers
 
-        public CustomerService()
+        private readonly IOrderService _orderService;
+
+        public CustomerService(IOrderService orderService)
         {
+            _orderService = orderService;
             _customers.Add(new Customer
             {
                 Id = 1,
@@ -30,8 +33,11 @@ namespace Stockify.Services
 
         public bool Delete(int id)
         {
-            // If customer has orders linked to them, we should not delete the customer.
-            // For now, we will just check if the customer exists.
+            if (_orderService.GetByCustomerId(id).Any())
+            {
+                throw new InvalidOperationException("Cannot delete customer with existing orders.");
+            }
+
             var existing = GetById(id);
             if (existing == null)
             {
